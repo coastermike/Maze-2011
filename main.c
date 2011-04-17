@@ -20,7 +20,7 @@ _FWDT(WDTPOST_PS32768 & WDTPRE_PR128 & WINDIS_OFF & FWDTEN_OFF & PLLKEN_OFF)
 _FPOR(FPWRT_PWR128)
 _FICD(ICS_PGD2 & JTAGEN_OFF)
 
-unsigned int tempread = 0, tempread1 = 0, tempread2 = 0, tempread3 = 0, tempread4 = 0, tempread5 = 0;
+float tempread = 0, tempread1 = 0, tempread2 = 0, tempread3 = 0, tempread4 = 0, tempread5 = 0;
 int main(void)
 {	
 	
@@ -49,7 +49,6 @@ int main(void)
 		start();
 	}
 	setMainState(3);
-	
 	while(1)
 	{
 		stateOfDeepThought();

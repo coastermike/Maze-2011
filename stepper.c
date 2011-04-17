@@ -75,21 +75,36 @@ void FollowRightWall (unsigned int speed)
 	leftR = Adc_IR(IR_LE_R);
 	LED1=~LED1;
 	
-	if(front < 6)
+	if((rightF > 4 && rightF < 9) && (rightR > 4 && rightR < 9))
 	{
-		SetSpeedDir(660, 1, 660, 0);	//SetSpeedDir(250, 0, speed, 0);	
-	}	
-	else if(rightF > 7)
-	{
-		SetSpeedDir(speed, 0, 660, 0);
+	//	SetSpeedDir(speed, 0, 660, 0);
+		if((rightR-rightF) > .3)
+		{
+			SetSpeedDir(660, 0, speed, 0);
+		}
+		else if((rightF-rightR) > .3)
+		{
+			SetSpeedDir(speed, 0, 660, 0);
+		}
+		else
+		{
+			SetSpeedDir(speed, 0, speed, 0);
+		}	
 	}
-	else if((rightF-rightR) < -1)
+	else if((leftF > 4 && leftR < 9) && (leftR > 4 && leftR < 9))
 	{
-		SetSpeedDir(660, 0, speed, 0);
-	}
-	else if((rightF-rightR) > 1)
-	{
-		SetSpeedDir(speed, 0, 660, 0);
+		if((leftR-leftF) > .3)
+		{
+			SetSpeedDir(speed, 0, 0, 0);
+		}
+		else if((leftF-leftR) > .3)
+		{
+			SetSpeedDir(0, 0, speed, 0);
+		}
+		else
+		{
+			SetSpeedDir(speed, 0, speed, 0);
+		}
 	}
 	else
 	{
@@ -142,12 +157,68 @@ void FrontWall(unsigned int speed)
 	front = Adc_IR(IR_FR);
 	front = Adc_IR(IR_FR);
 	LED1=~LED1;
-	SetSpeedDir(speed, 0, speed, 0);
+//	SetSpeedDir(speed, 0, speed, 0);
 	while(front>7)
 	{
 		front = Adc_IR(IR_FR);
 		front = Adc_IR(IR_FR);
 		LED1=~LED1;
+		rightF = Adc_IR(IR_RI_F);
+		rightF = Adc_IR(IR_RI_F);
+		LED1=~LED1;
+		rightR = Adc_IR(IR_RI_R);
+		rightR = Adc_IR(IR_RI_R);
+		LED1=~LED1;
+		leftF = Adc_IR(IR_LE_F);
+		leftF = Adc_IR(IR_LE_F);
+		LED1=~LED1;
+		leftR = Adc_IR(IR_LE_R);
+		leftR = Adc_IR(IR_LE_R);
+		LED1=~LED1;
+		
+	//	if((rightF > 4 && rightF < 8) && (rightR > 4 && rightR < 8))
+	//	{
+		//	SetSpeedDir(speed, 0, 800, 0);
+//			if(rightF < 7)
+//			{
+//				SetSpeedDir(speed-200, 0, speed, 0);
+//			}	
+			if((rightR-rightF) > .1)
+			{
+				SetSpeedDir(0, 0, speed, 0);
+			}
+			else if((rightF-rightR) > .1)
+			{
+				SetSpeedDir(speed, 0, 0, 0);
+			}
+			else
+			{
+				SetSpeedDir(speed, 0, speed, 0);
+			}	
+	//	}
+	//	else if((leftF > 4 && leftR < 8) && (leftR > 4 && leftR < 8))
+	//	{
+//			if(leftF < 7)
+//			{
+//				SetSpeedDir(speed, 0, speed-200, 0);
+//			}	
+//			else if((leftR-leftF) > .3)
+//			{
+//				SetSpeedDir(speed, 0, 200, 0);
+//			}
+//			else if((leftF-leftR) > .3)
+//			{
+//				SetSpeedDir(200, 0, speed, 0);
+//			}
+//			else
+//			{
+//				SetSpeedDir(speed, 0, speed, 0);
+//			}
+//		}
+//		else
+//		{
+//			SetSpeedDir(speed, 0, speed, 0);
+//		}	
 	}
 	SetSpeed(0,0);
 }
@@ -166,11 +237,11 @@ void DecideTurn()
 	leftR = Adc_IR(IR_LE_R);
 	leftR = Adc_IR(IR_LE_R);
 	LED1=~LED1;
-	if(rightF>15 && rightR > 15)
+	if(rightF>15 || rightR > 15)
 	{
 		setMainState(5);
 	}
-	else if(leftF > 15 && leftR > 15)
+	else if(leftF > 15 || leftR > 15)
 	{
 		setMainState(6);
 	}
@@ -194,7 +265,7 @@ void SetTurn90(unsigned int speed, char direction)
 	leftR = Adc_IR(IR_LE_R);
 	leftR = Adc_IR(IR_LE_R);
 	LED1=~LED1;
-	SetTurn(speed, direction, 60);
+	SetTurn(speed, direction, 72);
 	if(direction == 0)
 	{
 		while(leftF > (leftR+0.1) || leftF < (leftR-0.1))

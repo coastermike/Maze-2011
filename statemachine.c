@@ -13,7 +13,8 @@ void stateOfDeepThought()
 {	
 	if(state == 0)
 	{
-		SetSpeedDir(NORMSPEED, 0, NORMSPEED, 0);
+//		SetSpeedDir(NORMSPEED, 0, NORMSPEED, 0);
+FollowRightWall(NORMSPEED);
 	}	
 	else if(state == 1)
 	{
