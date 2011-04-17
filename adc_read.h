@@ -4,11 +4,6 @@
 #define NUMADC 27
 void Adc_Init();
 unsigned int Adc_Read(int ch);
-unsigned int Adc_IR(int ch);
-void setWhiteLightCalibration();
-void setBlackLightCalibration();
-unsigned int getLightL();
-unsigned int getLightR();
-unsigned int getLightRe();
+float Adc_IR(int ch);
 
 #endif

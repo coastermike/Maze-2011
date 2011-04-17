@@ -60,18 +60,21 @@ unsigned int Adc_Read(int ch)
 	return ADC1BUF0;
 }	
 
-unsigned int Adc_IR(int ch)
+float Adc_IR(int ch)
 {
 	int k=0;
-	unsigned int value = 0, raw = 0;
-	
+	unsigned int raw = 0;
+	float value = 0;
 	raw = Adc_Read(ch);
 	for(k=1; k < NUMADC; k++)
 	{
 		if(adc_table[k][0] < raw)	
 		{
-			value = adc_table[k-1][1] + (raw - adc_table[k-1][0]) *
-				(adc_table[k][1] - adc_table[k-1][1]) / (adc_table[k][0] - adc_table[k-1][0]);
+			value = (adc_table[k-1][0] - raw);
+			value = value / (adc_table[k-1][0] - adc_table[k][0]);
+			value = value + adc_table[k-1][1];
+		//	value = adc_table[k-1][1] + (float)((raw - adc_table[k-1][0]) *
+//				(adc_table[k][1] - adc_table[k-1][1]) / (adc_table[k][0] - adc_table[k-1][0]));
 			break;
 		}
 	}	
@@ -88,78 +91,4 @@ unsigned int Adc_IR(int ch)
 		value = 30;
 	}			
 	return value;
-}
-
-unsigned int calibrateLightL()
-{
-	int i;
-	unsigned int light_total = 0, tempLight;
-	for(i=0; i < 10; i++)
-	{
-		tempLight = Adc_Read(LIGHT_L);
-		tempLight = Adc_Read(LIGHT_L);
-		light_total = tempLight + light_total;
-	}
-	return light_total/10;
-}
-
-unsigned int calibrateLightR()
-{
-	int i;
-	unsigned int light_total = 0, tempLight;
-	for(i=0; i < 10; i++)
-	{
-		tempLight = Adc_Read(LIGHT_R);
-		tempLight = Adc_Read(LIGHT_R);
-		light_total = tempLight + light_total;
-	}
-	return light_total/10;
-}
-
-unsigned int calibrateLightRe()
-{
-	int i;
-	unsigned int light_total = 0, tempLight;
-	for(i=0; i < 10; i++)
-	{
-		tempLight = Adc_Read(LIGHT_RE);
-		tempLight = Adc_Read(LIGHT_RE);
-		light_total = tempLight + light_total;
-	}
-	return light_total/10;
-}
-	
-void setWhiteLightCalibration()//white is higher
-{
-	lightL_W = calibrateLightL();
-	lightR_W = calibrateLightR();
-	lightRe_W = calibrateLightRe();
-	lightL = lightL_W - 500;
-	lightR = lightR_W - 500;
-	lightRe = lightRe_W - 500;
-}
-
-void setBlackLightCalibration()//Black is lower
-{
-	lightL_B = calibrateLightL();
-	lightR_B = calibrateLightR();
-	lightRe_B = calibrateLightRe();
-	lightL = (lightL_W + lightL_B)/2;
-	lightR = (lightR_W + lightR_B)/2;
-	lightRe = (lightRe_W + lightRe_B)/2;	
-}
-	
-unsigned int getLightL()
-{
-	return lightL;
-}
-	
-unsigned int getLightR()
-{
-	return lightR;
-}
-	
-unsigned int getLightRe()
-{
-	return lightRe;
 }

@@ -26,10 +26,6 @@
 #define STARTSWITCH PORTBbits.RB4
 #define STARTSWITCH_Tris TRISBbits.TRISB4
 
-//Relay
-#define RELAY PORTBbits.RB5
-#define RELAYTris TRISBbits.TRISB5
-
 //Stepper
 #define MS1_L PORTFbits.RF3
 #define MS1_LTris TRISFbits.TRISF3
@@ -75,44 +71,18 @@
 #define AccelGSTris TRISGbits.TRISG13
 
 //IR Sensors
-#define IR_RI_F	29
-#define IR_FR_R 30
-#define IR_FR_L 20
+#define IR_RI_F	30
+#define IR_FR   20
 #define IR_LE_F 21
-#define IR_RE_L 14
 #define IR_LE_R 15
-#define IR_RE_R 23
+#define IR_RE   23
 #define IR_RI_R 24
 
 #define IR_RI_F_Tris TRISEbits.TRISE5
-#define IR_FR_R_Tris TRISEbits.TRISE6
-#define IR_FR_L_Tris TRISAbits.TRISA12
+#define IR_FR_Tris TRISEbits.TRISE6
 #define IR_LE_F_Tris TRISAbits.TRISA13
-#define IR_RE_L_Tris TRISBbits.TRISB14
 #define IR_LE_R_Tris TRISBbits.TRISB15
-#define IR_RE_R_Tris TRISAbits.TRISA7
+#define IR_RE_Tris TRISAbits.TRISA7
 #define IR_RI_R_Tris TRISEbits.TRISE1
-
-//Fire Sensors
-#define FIRE_R	31
-#define FIRE_M 	17
-#define FIRE_L 	19
-
-#define FIRE_R_Tris TRISEbits.TRISE7
-#define FIRE_M_Tris TRISCbits.TRISC2
-#define FIRE_L_Tris TRISCbits.TRISC4
-
-//Light
-#define LIGHT_R 16
-#define LIGHT_L 18
-#define LIGHT_RE 22
-
-#define LIGHT_R_Tris TRISCbits.TRISC1
-#define LIGHT_L_Tris TRISCbits.TRISC3
-#define LIGHT_RE_Tris TRISAbits.TRISA6
-
-//Tone detect
-#define SOUND 	25
-#define SOUND_Tris TRISEbits.TRISE1
 
 #endif

@@ -12,8 +12,6 @@ void Pin_Init()
 	LEDStatusTris = 0;
 	LEDErrorTris = 0;
 	
-	RELAYTris = 0;
-	
 	//steppers
 	MS1_LTris = 0;
 	StepEn_LTris = 0;
@@ -39,21 +37,9 @@ void Pin_Init()
 	AccelGS = 0;
 	
 	IR_RI_F_Tris = 1;
-	IR_FR_R_Tris = 1;
-	IR_FR_L_Tris = 1;
+	IR_FR_Tris = 1;
 	IR_LE_F_Tris = 1;
-	IR_RE_L_Tris = 1;
 	IR_LE_R_Tris = 1;
-	IR_RE_R_Tris = 1;
+	IR_RE_Tris = 1;
 	IR_RI_R_Tris = 1;
-	
-	FIRE_R_Tris = 1;
-	FIRE_L_Tris = 1;
-	FIRE_M_Tris = 1;
-	
-	LIGHT_R_Tris = 1;
-	LIGHT_L_Tris = 1;
-	LIGHT_RE_Tris = 1;
-	
-	STARTSWITCH_Tris = 1;
 }

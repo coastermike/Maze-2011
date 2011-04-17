@@ -2,6 +2,6 @@
 #define STATEMACHINE_H
 
 void setMainState(unsigned int stateGoto);
-void stateOfMarvin();
+void stateOfDeepThought();
 
 #endif
